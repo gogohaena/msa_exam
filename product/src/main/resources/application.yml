@@ -3,16 +3,29 @@ spring:
     name: product-service
   profiles:
     active: dev
-  config:
-    import: "configserver:"
+#  config:
+#    import: "configserver:"
   cloud:
     config:
-      discovery:
-        enabled: true
-        service-id: config-server
+      enabled: false # config 사용시 true
+#      discovery:
+#        enabled: false # config 사용시 true
+#        service-id: config-server
+  datasource:
+    url: jdbc:mysql://localhost:3306/msa_exam_auth
+    username: msa_exam_auth
+    password: password123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
 
 server:
-  port: 0  # 임시 포트, 이후 Config 서버 설정으로 덮어씌움
+  port: 19093  # 임시 포트, 이후 Config 서버 설정으로 덮어씌움
 
 eureka:
   client:
