@@ -19,8 +19,8 @@ public class OrderController {
 		return orderService.getOrder(orderId);
 	}
 
-	// @GetMapping
-	// public String getOrder() {
-	// 	return "Order details";
-	// }
+	@GetMapping
+	public String getOrder() {
+	 	return "Order details";
+	}
 }
