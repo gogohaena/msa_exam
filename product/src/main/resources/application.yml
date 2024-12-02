@@ -1,11 +1,18 @@
 spring:
   application:
     name: product-service
+  profiles:
+    active: dev
+  config:
+    import: "configserver:"
   cloud:
     config:
-      enabled: false
+      discovery:
+        enabled: true
+        service-id: config-server
+
 server:
-  port: 0 # 서버 포트
+  port: 0  # 임시 포트, 이후 Config 서버 설정으로 덮어씌움
 
 eureka:
   client:
@@ -40,38 +47,12 @@ management:
   endpoints:
     web:
       exposure:
-        include: prometheus
+        include: prometheus,refresh
+        # prometheus는 Prometheus 메트릭스 엔드포인트(/actuator/prometheus)를 활성화
+        # efresh는 /actuator/refresh 엔드포인트를 활성화
   prometheus:
     metrics:
       export:
         enabled: true
 
-
-#server:
-#  port: 0  # 임시 포트, 이후 Config 서버 설정으로 덮어씌움
-#
-#spring:
-##  profiles:
-##    active: local
-#  application:
-#    name: product-service
-#  config:
-#    import: "configserver:"
-#  cloud:
-#    config:
-#      discovery:
-#        enabled: true
-#        service-id: config-server
-#
-#management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include: refresh
-#
-#eureka:
-#  client:
-#    service-url:
-#      defaultZone: http://localhost:19090/eureka/
-#
-#message: "default message"
+message: "default message"
