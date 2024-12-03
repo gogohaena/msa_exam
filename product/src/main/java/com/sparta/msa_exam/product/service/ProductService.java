@@ -54,19 +54,12 @@ public class ProductService {
     }
 
     // 상품 상세 조회
-    @CircuitBreaker(name = "productService", fallbackMethod = "fallbackGetProductById")
     public ProductResponse getProductById(Long id) {
 
         Product product = productRepository.findById(id)
             .orElseThrow(() -> new BusinessException(ErrorCode.PRODUCT_NOT_FOUND));
 
         return new ProductResponse(product);
-    }
-
-    // 상품 상세 조회 Fallback
-    public String fallbackGetProductById(Long id, Throwable t) {
-        //t.getCause().printStackTrace();
-        return  "Fallback Product : " + id;
     }
 
 }

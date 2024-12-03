@@ -2,30 +2,29 @@ spring:
   application:
     name: product-service
   profiles:
-    active: dev
-#  config:
-#    import: "configserver:"
+    active: prod
+  config:
+    import: "configserver:"
   cloud:
     config:
-      enabled: false # config 사용시 true
-#      discovery:
-#        enabled: false # config 사용시 true
-#        service-id: config-server
-  datasource:
-    url: jdbc:mysql://localhost:3306/msa_exam_product
-    username: msa_exam_product
-    password: password123
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
+      discovery:
+        enabled: true
+        service-id: config-server
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/msa_exam_product
+#    username: msa_exam_product
+#    password: password123
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: true
+#    properties:
+#      hibernate:
+#        format_sql: true
 
 server:
-  port: 19093  # 임시 포트, 이후 Config 서버 설정으로 덮어씌움
+  port: 19093
 
 eureka:
   client:
@@ -57,13 +56,19 @@ resilience4j:
         waitDurationInOpenState: 20s  # Open 상태에서 Half-open 상태로 전환되기 전에 대기하는 시간을 20초로 설정
 
 management:
-  endpoints:
-    web:
-      exposure:
-        include: prometheus,refresh
-        # prometheus는 Prometheus 메트릭스 엔드포인트(/actuator/prometheus)를 활성화
-        # efresh는 /actuator/refresh 엔드포인트를 활성화
-  prometheus:
-    metrics:
-      export:
-        enabled: true
+  zipkin:
+    tracing:
+      endpoint: "http://localhost:9411/api/v2/spans"
+  tracing:
+    sampling:
+      probability: 1.0
+#  endpoints:
+#    web:
+#      exposure:
+#        include: prometheus,refresh
+#        # prometheus는 Prometheus 메트릭스 엔드포인트(/actuator/prometheus)를 활성화
+#        # efresh는 /actuator/refresh 엔드포인트를 활성화
+#  prometheus:
+#    metrics:
+#      export:
+#        enabled: true
