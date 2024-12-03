@@ -1,0 +1,33 @@
+services:
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    ports:
+      - "9411:9411"
+    restart: always
+
+  redis-stack:
+    image: redis/redis-stack
+    container_name: redis-stack
+    restart: always
+    environment:
+      REDIS_ARGS: "--requirepass systempass"
+    ports:
+      - 6379:6379
+      - 8001:8001
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./my.cnf:/etc/mysql/conf.d/my.cnf # MySQL 설정 파일 마운트
+      - ./init-scripts:/docker-entrypoint-initdb.d # 초기화 스크립트 마운트
+
+volumes:
+  mysql_data:

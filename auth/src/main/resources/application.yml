@@ -11,7 +11,7 @@ spring:
         enabled: true
         service-id: config-server
 #  datasource:
-#    url: jdbc:mysql://localhost:3306/msa_exam_auth
+#    url: jdbc:mysql://127.0.0.1:3306/msa_exam_auth
 #    username: msa_exam_auth
 #    password: password123
 #    driver-class-name: com.mysql.cj.jdbc.Driver
@@ -28,7 +28,7 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:19090/eureka/
+      defaultZone: http://127.0.0.1:19090/eureka/
 
 service:
   jwt:

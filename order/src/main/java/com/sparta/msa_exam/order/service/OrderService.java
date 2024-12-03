@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -100,6 +101,7 @@ public class OrderService {
 	}
 
 	// 주문 상세 조회
+	@Cacheable(cacheNames = "orderCache", key = "#orderId")
 	public GetOrderResponse getOrderById(Long orderId) {
 		// 주문 조회
 		Order order = orderRepository.findById(orderId)
