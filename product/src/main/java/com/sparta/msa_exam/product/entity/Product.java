@@ -1,36 +1,32 @@
 package com.sparta.msa_exam.product.entity;
 
-import com.sparta.msa_exam.product.dto.ProductRequest;
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
-@Entity
+@Builder
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Entity
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
 
     @Column(nullable = false)
-    private String name; // 상품명
-
-    @Column
-    private String description;
+    private String name;
 
     @Column(nullable = false)
     private int supplyPrice;
 
-    @Builder
-    public Product(String name, String description, int supplyPrice) {
-        this.name = name;
-        this.description = description;
-        this.supplyPrice = supplyPrice;
-    }
-
-    public void update(ProductRequest request) {
-        this.name = request.getName();
-        this.description = request.getDescription();
-        this.supplyPrice = request.getSupplyPrice();
-    }
+    @Column
+    private String description;
 }

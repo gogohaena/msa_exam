@@ -16,5 +16,4 @@ public class UserSignUpRequest {
 	@NotNull
 	private String password;
 
-
 }

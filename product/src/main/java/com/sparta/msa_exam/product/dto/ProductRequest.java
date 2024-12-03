@@ -10,11 +10,11 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ProductRequest {
 
-    @NotNull(message = "상품명을 입력해주세요.")
+    @NotNull
     private String name;
 
     private String description;
 
-    @NotNull(message = "상품 가격을 입력해주세요.")
+    @NotNull
     private int supplyPrice;
 }

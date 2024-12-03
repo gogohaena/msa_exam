@@ -1,11 +1,6 @@
-package com.sparta.msa_exam.order;
-
-import java.util.concurrent.ThreadLocalRandom;
+package com.sparta.msa_exam.order.global.config;
 
 import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClient;
-import org.springframework.cloud.loadbalancer.core.ServiceInstanceListSupplier;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.Bean;
 
 @LoadBalancerClient(name = "product-service")
 public class CustomLoadBalancerConfiguration {

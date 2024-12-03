@@ -12,8 +12,8 @@ spring:
 #        enabled: false # config 사용시 true
 #        service-id: config-server
   datasource:
-    url: jdbc:mysql://localhost:3306/msa_exam_auth
-    username: msa_exam_auth
+    url: jdbc:mysql://localhost:3306/msa_exam_product
+    username: msa_exam_product
     password: password123
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
@@ -67,5 +67,3 @@ management:
     metrics:
       export:
         enabled: true
-
-message: "default message"

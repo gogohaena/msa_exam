@@ -2,21 +2,21 @@ package com.sparta.msa_exam.product.dto;
 
 import com.sparta.msa_exam.product.entity.Product;
 
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
+@AllArgsConstructor
 public class ProductResponse {
-    private final Long productId;
-    private final String name;
-    private final String description;
-    private final int supplyPrice;
+    private Long productId;
+    private String name;
+    private int supplyPrice;
+    private String description;
 
-    @Builder
-    public ProductResponse(Product product) {
+    public ProductResponse (Product product) {
         this.productId = product.getProductId();
         this.name = product.getName();
-        this.description = product.getDescription();
         this.supplyPrice = product.getSupplyPrice();
+        this.description = product.getDescription();
     }
 }

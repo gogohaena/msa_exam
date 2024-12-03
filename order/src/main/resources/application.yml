@@ -1,15 +1,18 @@
 spring:
   application:
     name: order-service
-  main:
-    web-application-type: servlet # WebFlux 대신 Servlet 사용
-  cloud:
-    loadbalancer:
-      cache:
-        ttl: 30s # 캐싱 유효 시간 설정
-      configurations: weighted
-      enabled: true
-
+  datasource:
+    url: jdbc:mysql://localhost:3306/msa_exam_order
+    username: msa_exam_order
+    password: password123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
 server:
   port: 19092 # 서버 포트
 

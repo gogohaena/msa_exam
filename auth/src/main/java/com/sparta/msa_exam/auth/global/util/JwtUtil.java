@@ -27,10 +27,10 @@ public class JwtUtil {
 		this.secretKey = Keys.hmacShaKeyFor(Decoders.BASE64URL.decode(secretKey));
 	}
 
-	public String createAccessToken(String username, Map<String, Object> additionalClaims) {
+	public String createAccessToken(String username) {
 		return Jwts.builder()
-			.setClaims(additionalClaims)
 			.claim("username", username)
+			.claim("role", "user")
 			.setIssuer(issuer)
 			.setIssuedAt(new Date())
 			.setExpiration(new Date(System.currentTimeMillis() + accessExpiration))
